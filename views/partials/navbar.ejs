@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"> <%= title %> </a>
+    <a class="navbar-brand" href="/"> Members Only </a>
 
     <button
       class="navbar-toggler"
@@ -18,7 +18,7 @@
       <div class="navbar-nav ms-auto">
         <% if (typeof currentUser != 'undefined') { %>
         <span class="navbar-text me-1">
-          Welcome back, <strong> <%= currentUser.full_name %> </strong>!
+          Hello, <strong> <%= currentUser.full_name %> </strong>!
         </span>
         <a class="nav-link text-danger" aria-current="page" href="/logout"
           >Log Out</a

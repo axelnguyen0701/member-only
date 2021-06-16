@@ -1,3 +1,24 @@
-<%- include('partials/header.ejs') %> 
-<%- include('partials/navbar.ejs') %> 
+<%- include('partials/header.ejs') %> <%- include('partials/navbar.ejs') %>
+
+<div class="container">
+  <% if (typeof message_list != 'undefined') { %>
+  <div class="mt-2 border rounded p-3">
+    <% message_list.forEach((message,index) => { %>
+    <h3 class="author">
+      <%=typeof currentUser != 'undefined' ? message.author.username :
+      'Anonymous'%>
+    </h3>
+    <p class="content"><%- message.content %></p>
+    <p class="date">
+      <%=typeof currentUser != 'undefined' ? message.timestamp_formatted :
+      "Unknowned date"%>
+    </p>
+    <% if (index < message_list.length -1 ) { %>
+    <hr />
+    <% }}) %>
+  </div>
+  <% } %>
+  <a href="/messages/new">Send new message</a>
+</div>
+
 <%-include('partials/footer.ejs') %>
