@@ -11,4 +11,10 @@ router.get('/new', middleware.secured, messageController.message_create_get)
 router.post('/new', middleware.secured, messageController.message_create_post)
 
 
+//Delete message GET:
+router.get('/:messageId/delete', messageController.delete_message_get)
+
+//Delete message POST:
+router.post('/:messageId/delete', messageController.delete_message_post)
+
 module.exports = router;

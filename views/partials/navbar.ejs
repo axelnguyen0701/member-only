@@ -17,9 +17,16 @@
     <div class="collapse navbar-collapse d-flex" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
         <% if (typeof currentUser != 'undefined') { %>
+
         <span class="navbar-text me-1">
           Hello, <strong> <%= currentUser.full_name %> </strong>!
         </span>
+        <% if (currentUser.member_status === 'Regular') { %>
+        <a href="<%=currentUser.url%>/upgrade" class="nav-link text-success"
+          >Upgrade</a
+        >
+        <% } %>
+
         <a class="nav-link text-danger" aria-current="page" href="/logout"
           >Log Out</a
         >

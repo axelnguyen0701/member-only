@@ -13,12 +13,15 @@
       <%=typeof currentUser != 'undefined' ? message.timestamp_formatted :
       "Unknowned date"%>
     </p>
-    <% if (index < message_list.length -1 ) { %>
+    <% if (typeof currentUser != 'undefined' && currentUser.member_status ===
+    'Admin') { %>
+    <a href="<%=message.url%>/delete" class="btn btn-danger">Delete</a>
+    <% } %> <% if (index < message_list.length -1 ) { %>
     <hr />
     <% }}) %>
   </div>
   <% } %>
-  <a href="/messages/new">Send new message</a>
+  <a href="/messages/new">Send a new message</a>
 </div>
 
 <%-include('partials/footer.ejs') %>

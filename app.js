@@ -16,7 +16,7 @@ const mongoose = require('mongoose');
 const User = require('./models/user')
 //Connect to mongoDB
 const mongoDB_link = `mongodb+srv://axelnguyen0701:${process.env.MONGO_PASSWORD}@cluster0.qp4ci.mongodb.net/members-only?retryWrites=true&w=majority`;
-mongoose.connect(mongoDB_link, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoDB_link, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

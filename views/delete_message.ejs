@@ -1,0 +1,17 @@
+<%- include('partials/header.ejs') %> <%- include('partials/navbar.ejs') %>
+<div class="container vh-100 d-flex justify-content-center align-items center">
+  <form action="" method="post">
+    <h1><%= title %></h1>
+    <div class="card">
+      <div class="card-header">Delete this message?</div>
+      <div class="card-body">
+        <h5 class="card-title"><%= message.title%></h5>
+        <p class="card-text"><%= message.content %></p>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="/" class="btn">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<%-include('partials/footer.ejs') %>

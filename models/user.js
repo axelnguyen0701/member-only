@@ -6,7 +6,7 @@ var UserSchema = new Schema({
 	last_name: { type: String, required: true, maxLength: 100 },
 	username: { type: String, required: true, maxLength: 100 },
 	hashed_password: { type: String, required: true },
-	member_status: { type: String, default: "Regular", enum: ["Admin", "VIP", "Regular"] }
+	member_status: { type: String, default: "Regular", enum: ["Admin", "Regular"] }
 });
 
 UserSchema

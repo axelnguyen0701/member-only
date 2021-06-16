@@ -2,6 +2,7 @@ const { body, validationResult, check } = require("express-validator");
 var User = require('../models/user')
 var bcrypt = require('bcryptjs');
 const passport = require("passport");
+require('dotenv').config();
 
 exports.user_signup_get = (req, res, next) => {
 	res.render('sign-up', { title: 'Sign Up', currentUser: req.user });
@@ -72,3 +73,33 @@ exports.user_logout = (req, res) => {
 	req.logout();
 	res.redirect('/')
 }
+
+exports.user_upgrade_get = (req, res, next) => {
+	res.render('upgrade_form', { title: "Upgrade Membership" })
+}
+
+exports.user_upgrade_post = [
+	body('passcode', 'Must not be blank').trim().isLength({ min: 1 }).escape(),
+	(req, res, next) => {
+		const errors = validationResult(req)
+
+		if (!errors.isEmpty()) {
+			res.render('upgrade_form', { title: 'Upgrade Membership', errors: errors.array() })
+			return;
+
+		}
+		else {
+			if (req.body.passcode === process.env.PASSCODE) {
+				User.findByIdAndUpdate(req.user._id, { member_status: "Admin" })
+					.exec((err, user) => {
+						if (err) return next(err);
+						else { console.log("Updated User: ", user); res.redirect('/') }
+					})
+			}
+			else {
+				res.render('upgrade_form', { title: "Upgrade Memebership", errors: [{ msg: 'Wrong password' }] })
+			}
+		}
+
+	}
+]

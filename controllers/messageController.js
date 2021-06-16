@@ -36,3 +36,19 @@ exports.get_message = (req, res, next) => {
 			return;
 		})
 }
+exports.delete_message_get = (req, res, next) => {
+	Message.findById(req.params.messageId)
+		.exec((err, message) => {
+			if (err) return next(err)
+			else res.render('delete_message', { title: 'Delete Message', message })
+		})
+}
+
+exports.delete_message_post = (req, res, next) => {
+	Message.findByIdAndDelete(req.params.messageId)
+		.exec((err) => {
+			if (err) return next(err)
+			else res.redirect('/')
+		}
+		)
+}

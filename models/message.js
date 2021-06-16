@@ -14,4 +14,9 @@ MessageSchema
 		return DateTime.fromJSDate(this.timestamp).toLocaleString(DateTime.DATETIME_SHORT)
 	})
 
+MessageSchema
+	.virtual('url')
+	.get(function () {
+		return '/messages/' + this._id
+	})
 module.exports = mongoose.model('Message', MessageSchema);
