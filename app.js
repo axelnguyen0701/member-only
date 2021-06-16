@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var compression = require('compression');
+var helmet = require('helmet')
 //Authentication
 const session = require('express-session');
 const passport = require('passport');
@@ -76,6 +78,11 @@ passport.deserializeUser(function (id, done) {
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+//Helmet and compression:
+app.use(compression());
+app.use(helmet());
 
 //Locals
 app.use((req, res, next) => {
