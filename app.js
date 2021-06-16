@@ -17,7 +17,7 @@ const mongoose = require('mongoose');
 //models
 const User = require('./models/user')
 //Connect to mongoDB
-const mongoDB_link = `mongodb+srv://axelnguyen0701:${process.env.MONGO_PASSWORD}@cluster0.qp4ci.mongodb.net/members-only?retryWrites=true&w=majority`;
+const mongoDB_link = process.env.MONGO_URI;
 mongoose.connect(mongoDB_link, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 const db = mongoose.connection;
